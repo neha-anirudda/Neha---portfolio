@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neha — AI Product Manager</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#F6F3EC;
+    --paper-2:#EDE8DB;
+    --ink:#1C2430;
+    --ink-soft:#52596A;
+    --navy:#22304A;
+    --amber:#D98E2C;
+    --amber-soft:#F1D9AE;
+    --line:#D8D2C2;
+    --green-tag:#4D6B53;
+    --red-tag:#A0473A;
+    --radius:14px;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--amber-soft); }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    color:var(--navy);
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  :focus-visible{ outline:2px solid var(--amber); outline-offset:3px; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,236,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{ display:flex; justify-content:space-between; align-items:center; height:62px; }
+  .logo{ font-family:'Fraunces',serif; font-weight:700; font-size:1.15rem; color:var(--navy); }
+  .logo span{ color:var(--amber); }
+  .navlinks{ display:flex; gap:26px; }
+  .navlinks a{ font-size:0.88rem; color:var(--ink-soft); font-weight:500; transition:color .15s; }
+  .navlinks a:hover{ color:var(--navy); }
+  .nav-toggle{ display:none; background:none; border:none; cursor:pointer; }
+  .nav-toggle span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .status-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--paper-2); border:1px solid var(--line);
+    padding:6px 14px; border-radius:999px;
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+    color:var(--ink-soft); margin-bottom:28px;
+  }
+  .status-pill .dot{ width:7px; height:7px; border-radius:50%; background:var(--green-tag); }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.1rem);
+    line-height:1.04;
+    max-width:13ch;
+    margin-bottom:24px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--amber); }
+  .hero p.sub{
+    font-size:1.15rem; color:var(--ink-soft); max-width:46ch; margin-bottom:36px;
+  }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:999px;
+    font-weight:600; font-size:0.92rem;
+    transition:transform .15s ease, box-shadow .15s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{ background:var(--navy); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(34,48,74,0.25); }
+  .btn-ghost{ border-color:var(--navy); color:var(--navy); }
+  .btn-ghost:hover{ background:var(--navy); color:var(--paper); }
+
+  .hero-tape{
+    margin-top:64px; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:16px 0; overflow:hidden; white-space:nowrap;
+  }
+  .hero-tape .track{
+    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+    color:var(--ink-soft); animation:scroll 28s linear infinite;
+  }
+  .hero-tape .track span{ margin:0 22px; }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .hero-tape .track{ animation:none; } }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding:84px 0; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:0.75rem; letter-spacing:0.1em; color:var(--amber); text-transform:uppercase; margin-bottom:14px; display:block; }
+  .section-title{ font-size:clamp(1.7rem,3.6vw,2.3rem); margin-bottom:18px; max-width:18ch; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start; }
+  .about-grid p{ color:var(--ink-soft); margin-bottom:16px; font-size:1.02rem; }
+  .about-grid p strong{ color:var(--ink); }
+  .stat-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; margin-bottom:14px;
+  }
+  .stat-card .num{ font-family:'Fraunces',serif; font-size:2.1rem; color:var(--navy); font-weight:700; }
+  .stat-card .label{ font-size:0.85rem; color:var(--ink-soft); margin-top:2px; }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- PROJECTS (PRD-card signature element) ---------- */
+  .prd-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    margin-bottom:28px; overflow:hidden;
+    box-shadow:0 1px 0 rgba(28,36,48,0.02);
+  }
+  .prd-head{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    padding:24px 26px; border-bottom:1px solid var(--line); cursor:pointer;
+    background:linear-gradient(180deg, #fff, #fdfcf9);
+  }
+  .prd-head:hover{ background:var(--paper-2); }
+  .prd-title-row{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .prd-id{ font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--ink-soft); border:1px solid var(--line); padding:2px 8px; border-radius:6px; }
+  .prd-title{ font-family:'Fraunces',serif; font-size:1.3rem; color:var(--navy); font-weight:600; }
+  .tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.68rem; text-transform:uppercase;
+    padding:4px 10px; border-radius:999px; letter-spacing:0.06em; white-space:nowrap;
+  }
+  .tag-shipped{ background:#E4ECE2; color:var(--green-tag); }
+  .tag-teardown{ background:#F3E2DD; color:var(--red-tag); }
+  .tag-concept{ background:var(--amber-soft); color:#8A5A14; }
+  .chevron{ font-family:'JetBrains Mono',monospace; color:var(--ink-soft); transition:transform .2s; flex-shrink:0; margin-top:4px; }
+  .prd-card.open .chevron{ transform:rotate(45deg); }
+  .prd-body{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .prd-card.open .prd-body{ max-height:2200px; }
+  .prd-body-inner{ padding:6px 26px 28px; }
+  .prd-sub{ font-family:'JetBrains Mono',monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--amber); margin:18px 0 8px; }
+  .prd-sub:first-child{ margin-top:6px; }
+  .prd-body-inner p, .prd-body-inner li{ color:var(--ink-soft); font-size:0.97rem; }
+  .prd-body-inner ul{ padding-left:20px; margin-top:4px; }
+  .prd-body-inner li{ margin-bottom:6px; }
+  .result-line{
+    margin-top:18px; background:var(--paper-2); border-left:3px solid var(--amber);
+    padding:12px 16px; border-radius:6px; font-size:0.92rem; color:var(--ink);
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-row{ display:grid; grid-template-columns:200px 1fr; gap:24px; padding:26px 0; border-top:1px solid var(--line); }
+  .exp-row:last-child{ border-bottom:none; }
+  .exp-role{ font-weight:600; color:var(--navy); font-family:'Fraunces',serif; font-size:1.1rem; margin-bottom:4px; }
+  .exp-org{ color:var(--ink-soft); font-size:0.88rem; }
+  .exp-row ul{ padding-left:18px; }
+  .exp-row li{ color:var(--ink-soft); margin-bottom:7px; font-size:0.96rem; }
+  @media (max-width:700px){ .exp-row{ grid-template-columns:1fr; gap:6px; } }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .skill-col{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:24px; }
+  .skill-col h4{ font-size:1rem; margin-bottom:14px; }
+  .skill-col ul{ list-style:none; }
+  .skill-col li{ color:var(--ink-soft); font-size:0.92rem; padding:6px 0; border-top:1px dashed var(--line); }
+  .skill-col li:first-child{ border-top:none; }
+  @media (max-width:760px){ .skills-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- HOT TAKES ---------- */
+  .takes-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .take-card{ background:var(--navy); color:var(--paper); border-radius:var(--radius); padding:22px; min-height:160px; display:flex; flex-direction:column; justify-content:space-between; }
+  .take-card .take-label{ font-family:'JetBrains Mono',monospace; font-size:0.68rem; text-transform:uppercase; color:var(--amber-soft); letter-spacing:0.06em; margin-bottom:12px; }
+  .take-card p{ font-size:0.96rem; line-height:1.5; }
+  @media (max-width:760px){ .takes-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CONTACT ---------- */
+  .contact{ border-bottom:none; text-align:center; padding:96px 0 80px; }
+  .contact h2{ font-size:clamp(2rem,5vw,3rem); max-width:16ch; margin:0 auto 22px; }
+  .contact p{ color:var(--ink-soft); max-width:42ch; margin:0 auto 36px; font-size:1.05rem; }
+  .contact-links{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+
+  footer{ text-align:center; padding:28px 0; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--ink-soft); }
+
+  @media (max-width:680px){
+    .navlinks{ display:none; }
+    .nav-toggle{ display:block; }
+    .navlinks.show{
+      display:flex; flex-direction:column; position:absolute; top:62px; left:0; right:0;
+      background:var(--paper); border-bottom:1px solid var(--line); padding:18px 28px; gap:16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">neha<span>.</span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Case Studies</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#takes">Hot Takes</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="status-pill"><span class="dot"></span> open to AI PM / PM roles · bangalore + remote</div>
+    <h1>I build AI products. Then I argue with myself about whether anyone <em>actually</em> needs them.</h1>
+    <p class="sub">Computer Science + AI/ML grad who got tired of just building models and started asking "but should we?" — now hunting for a seat where I can do both.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See my case studies →</a>
+      <a href="#contact" class="btn btn-ghost">Let's talk</a>
+    </div>
+  </div>
+  <div class="hero-tape">
+    <div class="track">
+      <span>PRODUCT THINKING</span><span>·</span><span>AI / ML FLUENT</span><span>·</span><span>USER FIRST</span><span>·</span><span>0 → 1 MINDSET</span><span>·</span>
+      <span>PRODUCT THINKING</span><span>·</span><span>AI / ML FLUENT</span><span>·</span><span>USER FIRST</span><span>·</span><span>0 → 1 MINDSET</span><span>·</span>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow">// about</span>
+      <h2 class="section-title">From "how do I build it" to "should I build it"</h2>
+      <p>I didn't wake up and decide to "pivot to product." It was slower than that. I spent my degree deep in AI/ML — training models, fixing pipelines, debugging things at 2 AM that broke for no reason. Somewhere in there, I noticed I was more curious about <strong>why</strong> we were building a feature than <strong>how</strong>.</p>
+      <p>During internships, I kept gravitating toward the messy human stuff: which trainer to onboard, how to explain a model's limitation to someone non-technical, what users actually meant when they said "this feels off." Turns out that's product thinking. I just didn't have the title for it yet.</p>
+      <p>Now: I can read a confusion matrix and a user complaint with equal fluency. I want to be the person in the room who translates between the engineer, the user, and the business — because most expensive mistakes happen in that translation gap.</p>
+    </div>
+    <div>
+      <div class="stat-card"><div class="num">61%</div><div class="label">generative diversity gain shipped in my capstone model</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="label">internships spanning software, ops &amp; research</div></div>
+      <div class="stat-card"><div class="num">1</div><div class="label">accepted conference paper, peer-reviewed</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <span class="eyebrow">// case studies</span>
+    <h2 class="section-title">Three ways I think about products</h2>
+
+    <div class="prd-card" id="card1">
+      <div class="prd-head" onclick="toggleCard('card1')">
+        <div class="prd-title-row">
+          <span class="prd-id">PRD-01</span>
+          <span class="prd-title">AI-Generated Yoga Motion</span>
+          <span class="tag tag-shipped">Shipped &amp; Published</span>
+        </div>
+        <span class="chevron">+</span>
+      </div>
+      <div class="prd-body">
+        <div class="prd-body-inner">
+          <div class="prd-sub">Problem</div>
+          <p>Static yoga videos don't adapt — same pace, same body type, same sequence, whether you're a stiff-hipped beginner or a five-year practitioner. Could a model generate novel, varied motion sequences instead of replaying fixed recordings?</p>
+          <div class="prd-sub">Target users</div>
+          <p>Home-fitness users who fall off routines because content feels repetitive — and platforms that want scalable, varied content without filming a new video for every variation.</p>
+          <div class="prd-sub">Key product decisions</div>
+          <ul>
+            <li>Chose <strong>generative diversity</strong> as the north-star metric over raw accuracy. A technically "correct" pose that looks identical every time is a worse experience than slightly varied poses that feel alive.</li>
+            <li>Built a Seq2Seq baseline and a "No-Anchor" ablation specifically to prove the diversity gain wasn't a fluke, not just ship and hope.</li>
+            <li>Insisted on multi-seed evaluation (3 seeds) before trusting any result — one good run is a coincidence, not a finding.</li>
+          </ul>
+          <div class="prd-sub">Trade-offs</div>
+          <ul>
+            <li><strong>Diversity vs. fidelity</strong> — pushing for variety risks less anatomically "clean" poses. I optimized for the former, betting that fresh-but-imperfect beats perfect-but-boring for retention — though that's a hypothesis I'd want real user testing to confirm.</li>
+            <li>Generative novelty is hard to evaluate without a human in the loop. The metrics say it's different; they don't fully say it's good. Next step: actual user panels, not more architecture tweaks.</li>
+          </ul>
+          <div class="result-line">Result: 61% improvement in generative diversity over the Seq2Seq baseline. Paper accepted at conference.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prd-card" id="card2">
+      <div class="prd-head" onclick="toggleCard('card2')">
+        <div class="prd-title-row">
+          <span class="prd-id">PRD-02</span>
+          <span class="prd-title">Zomato — Product Teardown</span>
+          <span class="tag tag-teardown">Teardown</span>
+        </div>
+        <span class="chevron">+</span>
+      </div>
+      <div class="prd-body">
+        <div class="prd-body-inner">
+          <div class="prd-sub">What works</div>
+          <ul>
+            <li>Order-tracking is genuinely excellent — live map and contextual nudges reduce anxiety during the worst part of the wait.</li>
+            <li>Search-to-order friction is low if you already know what you want.</li>
+            <li>Gold membership reframes a discount as a status object, not just a coupon — smart retention lever.</li>
+          </ul>
+          <div class="prd-sub">What doesn't</div>
+          <ul>
+            <li>Discovery is broken for indecisive users — the homepage throws 14 carousels at you and none help you decide.</li>
+            <li>Post-order support is a maze: 3-4 taps to a resolution, right when the user's patience is lowest.</li>
+            <li>Reviews are noisy and rarely tied to your actual order context.</li>
+          </ul>
+          <div class="prd-sub">Specific improvements I'd ship</div>
+          <ul>
+            <li>A "Decide for me" mode — 2-3 taps (mood, budget, time) → one confident recommendation.</li>
+            <li>One-tap order-issue resolution surfaced directly on the tracking screen.</li>
+            <li>Review tagging by issue type (late / cold / wrong item / portion) so ratings become a diagnostic signal, not just a star count.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="prd-card" id="card3">
+      <div class="prd-head" onclick="toggleCard('card3')">
+        <div class="prd-title-row">
+          <span class="prd-id">PRD-03</span>
+          <span class="prd-title">AI Fitness Coach</span>
+          <span class="tag tag-concept">Concept</span>
+        </div>
+        <span class="chevron">+</span>
+      </div>
+      <div class="prd-body">
+        <div class="prd-body-inner">
+          <div class="prd-sub">The idea</div>
+          <p>A coaching app that adapts in real time to form, fatigue signals, and consistency patterns — the way a human coach notices when you're phoning it in vs. genuinely struggling.</p>
+          <div class="prd-sub">Target users</div>
+          <p>People who've tried fitness apps before and quit within 3 weeks — not from lack of motivation, but because the app couldn't tell "I'm tired today" from "I'm not trying."</p>
+          <div class="prd-sub">Core features</div>
+          <ul>
+            <li>Form-correction via pose detection, with feedback that encourages rather than scolds.</li>
+            <li>Adaptive difficulty that lowers the bar after a missed-session streak instead of guilt-tripping — re-engagement over rigidity.</li>
+            <li>A weekly "honest recap" — a plain-language read on whether you're actually progressing or plateauing.</li>
+          </ul>
+          <div class="prd-sub">Why it would succeed</div>
+          <p>Most fitness apps fail at retention, not acquisition. The wedge isn't more features — it's emotional intelligence: an app that adjusts to a bad week instead of punishing it solves the actual reason people quit. That's a product bet, not a tech bet.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <span class="eyebrow">// experience</span>
+    <h2 class="section-title">What I actually did, minus the jargon</h2>
+
+    <div class="exp-row">
+      <div>
+        <div class="exp-role">Operations Intern</div>
+        <div class="exp-org">Genesis Training</div>
+      </div>
+      <ul>
+        <li>Sat at the intersection of trainers, colleges, and finance — three groups with different priorities and zero shared context.</li>
+        <li>Owned freelance trainer sourcing and onboarding end-to-end, making fast judgment calls on fit with incomplete information — a very PM problem.</li>
+        <li>Translated commercial terms between finance and college clients into something both sides could actually agree on.</li>
+        <li>Learned that most "operational" problems are communication problems wearing a different costume.</li>
+      </ul>
+    </div>
+
+    <div class="exp-row">
+      <div>
+        <div class="exp-role">Computer Vision Intern</div>
+        <div class="exp-org">Bharat Electronics Limited</div>
+      </div>
+      <ul>
+        <li>Worked on a YOLOv8-based detection pipeline inside a larger digital twin system.</li>
+        <li>Scoped a technical problem against a non-negotiable real-world accuracy constraint — there was no "ship it and iterate" luxury here.</li>
+        <li>Got firsthand exposure to how technical decisions get made when the cost of being wrong is high, not hypothetical.</li>
+      </ul>
+    </div>
+
+    <div class="exp-row">
+      <div>
+        <div class="exp-role">R&amp;D Intern</div>
+        <div class="exp-org">IFSCR Research Centre</div>
+      </div>
+      <ul>
+        <li>Contributed to applied research work, reinforcing how to take a vague, open-ended problem and narrow it into something testable — the same muscle product discovery needs.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <span class="eyebrow">// skills</span>
+    <h2 class="section-title">What I bring to a product team</h2>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h4>Product</h4>
+        <ul>
+          <li>Problem framing</li>
+          <li>User research basics</li>
+          <li>Prioritization trade-offs</li>
+          <li>Competitive teardown</li>
+          <li>Metrics definition</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Technical fluency</h4>
+        <ul>
+          <li>Reading model outputs &amp; eval metrics</li>
+          <li>ML system constraints &amp; trade-offs</li>
+          <li>Technical conversations, no translator needed</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Operational</h4>
+        <ul>
+          <li>Cross-functional coordination</li>
+          <li>Stakeholder communication</li>
+          <li>Working with ambiguity</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="takes">
+  <div class="wrap">
+    <span class="eyebrow">// fun</span>
+    <h2 class="section-title">Opinions I'll defend at a dinner party</h2>
+    <div class="takes-grid">
+      <div class="take-card">
+        <div class="take-label">Products I love</div>
+        <p>Notion — trusts the user to build their own structure instead of forcing one. Rare in software.</p>
+      </div>
+      <div class="take-card">
+        <div class="take-label">If I could fix one app</div>
+        <p>Instagram DMs. It's trying to be messaging, feed, and shopping cart at once — pick a lane.</p>
+      </div>
+      <div class="take-card">
+        <div class="take-label">A hot take</div>
+        <p>Most apps don't have a discovery problem — they have a decision problem. More options ≠ less overwhelm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">// get in touch</span>
+    <h2>If you've read this far, you already know I overthink products for fun.</h2>
+    <p>Imagine what I'd do with one of yours.</p>
+    <div class="contact-links">
+      <a href="mailto:your.email@example.com" class="btn btn-primary">Email me →</a>
+      <a href="#" class="btn btn-ghost">LinkedIn</a>
+      <a href="#" class="btn btn-ghost">Resume (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<footer>built by neha · 2026</footer>
+
+<script>
+  function toggleCard(id){
+    document.getElementById(id).classList.toggle('open');
+  }
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navlinks').classList.toggle('show');
+  });
+  document.querySelectorAll('.navlinks a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.getElementById('navlinks').classList.remove('show');
+    });
+  });
+</script>
+
+</body>
+</html>
