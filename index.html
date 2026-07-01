@@ -216,13 +216,13 @@
 
 <nav>
   <div class="wrap">
-    <a href="#top" class="logo">neha<span>.</span></a>
+    <a href="#top" class="logo">NEHA A<span>.</span></a>
     <div class="navlinks" id="navlinks">
       <a href="#about">About</a>
       <a href="#work">Case Studies</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
-      <a href="#takes">Hot Takes</a>
+      <a href="#Hot takes">What I'hv Noticed</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -231,9 +231,9 @@
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="status-pill"><span class="dot"></span> open to AI PM / PM roles · bangalore + remote</div>
-    <h1>I build AI products. Then I argue with myself about whether anyone <em>actually</em> needs them.</h1>
-    <p class="sub">Computer Science + AI/ML grad who got tired of just building models and started asking "but should we?" — now hunting for a seat where I can do both.</p>
+    <div class="status-pill"><span class="dot"></span> open to AI PM / PM roles · Bangalore + remote</div>
+    <h1>I like <em>fixing</em> the small things in apps that <em>frustrate</em> people the most.</h1>
+    <p class="sub"> Computer Science + AI/ML grad focused on what to build and why it matters ;)</p>
     <div class="hero-cta">
       <a href="#work" class="btn btn-primary">See my case studies →</a>
       <a href="#contact" class="btn btn-ghost">Let's talk</a>
@@ -250,7 +250,7 @@
 <section id="about">
   <div class="wrap about-grid">
     <div>
-      <span class="eyebrow">// about</span>
+      <span class="eyebrow">// ABOUT ME</span>
       <h2 class="section-title">From "how do I build it" to "should I build it"</h2>
       <p>I didn't wake up and decide to "pivot to product." It was slower than that. I spent my degree deep in AI/ML — training models, fixing pipelines, debugging things at 2 AM that broke for no reason. Somewhere in there, I noticed I was more curious about <strong>why</strong> we were building a feature than <strong>how</strong>.</p>
       <p>During internships, I kept gravitating toward the messy human stuff: which trainer to onboard, how to explain a model's limitation to someone non-technical, what users actually meant when they said "this feels off." Turns out that's product thinking. I just didn't have the title for it yet.</p>
@@ -270,35 +270,45 @@
     <h2 class="section-title">Three ways I think about products</h2>
 
     <div class="prd-card" id="card1">
-      <div class="prd-head" onclick="toggleCard('card1')">
-        <div class="prd-title-row">
-          <span class="prd-id">PRD-01</span>
-          <span class="prd-title">AI-Generated Yoga Motion</span>
-          <span class="tag tag-shipped">Shipped &amp; Published</span>
-        </div>
-        <span class="chevron">+</span>
-      </div>
-      <div class="prd-body">
-        <div class="prd-body-inner">
-          <div class="prd-sub">Problem</div>
-          <p>Static yoga videos don't adapt — same pace, same body type, same sequence, whether you're a stiff-hipped beginner or a five-year practitioner. Could a model generate novel, varied motion sequences instead of replaying fixed recordings?</p>
-          <div class="prd-sub">Target users</div>
-          <p>Home-fitness users who fall off routines because content feels repetitive — and platforms that want scalable, varied content without filming a new video for every variation.</p>
-          <div class="prd-sub">Key product decisions</div>
-          <ul>
-            <li>Chose <strong>generative diversity</strong> as the north-star metric over raw accuracy. A technically "correct" pose that looks identical every time is a worse experience than slightly varied poses that feel alive.</li>
-            <li>Built a Seq2Seq baseline and a "No-Anchor" ablation specifically to prove the diversity gain wasn't a fluke, not just ship and hope.</li>
-            <li>Insisted on multi-seed evaluation (3 seeds) before trusting any result — one good run is a coincidence, not a finding.</li>
-          </ul>
-          <div class="prd-sub">Trade-offs</div>
-          <ul>
-            <li><strong>Diversity vs. fidelity</strong> — pushing for variety risks less anatomically "clean" poses. I optimized for the former, betting that fresh-but-imperfect beats perfect-but-boring for retention — though that's a hypothesis I'd want real user testing to confirm.</li>
-            <li>Generative novelty is hard to evaluate without a human in the loop. The metrics say it's different; they don't fully say it's good. Next step: actual user panels, not more architecture tweaks.</li>
-          </ul>
-          <div class="result-line">Result: 61% improvement in generative diversity over the Seq2Seq baseline. Paper accepted at conference.</div>
-        </div>
-      </div>
+  <div class="prd-head" onclick="toggleCard('card1')">
+    <div class="prd-title-row">
+      <span class="prd-id">PRD-01</span>
+      <span class="prd-title">Skeleton-Based Yoga Motion Generation</span>
+      <span class="tag tag-shipped">Research Project</span>
     </div>
+    <span class="chevron">+</span>
+  </div>
+  <div class="prd-body">
+    <div class="prd-body-inner">
+
+
+  <div class="prd-sub">Problem</div>
+  <p>Most motion generation models work well for fast, generic actions but struggle with slow, stability-heavy movements like yoga often producing jittery and biomechanically inconsistent sequences.</p>
+  
+  <div class="prd-sub">Research focus</div>
+  <p>Understanding whether generative models can learn structured, temporally consistent yoga motion not just replicate poses, but generate smooth and diverse transitions.</p>
+  
+  <div class="prd-sub">Key decisions</div>
+  <ul>
+    <li>Used <strong>skeleton-based data (3D joints)</strong> instead of video to improve control and interpretability.</li>
+    <li>Adopted a <strong>CVAE + GRU architecture</strong> to balance temporal modeling with generative diversity.</li>
+    <li>Introduced <strong>motion-aware augmentation and stability anchoring</strong> to reduce jitter and improve early-frame consistency.</li>
+    <li>Benchmarked against <strong>Seq2Seq and standard VAE baselines</strong> to validate improvements.</li>
+  </ul>
+  
+  <div class="prd-sub">Trade-offs</div>
+  <ul>
+    <li><strong>Diversity vs. stability</strong> — increasing variation can introduce slight anatomical inconsistencies.</li>
+    <li><strong>Evaluation limits</strong> — metrics capture smoothness and realism, but not fully human-perceived quality.</li>
+  </ul>
+  
+  <div class="result-line">Result: +59% improvement in generative diversity over Seq2Seq with improved realism (lower Motion-FID) and stable motion generation.</div>
+
+</div>
+```
+
+  </div>
+</div>
 
     <div class="prd-card" id="card2">
       <div class="prd-head" onclick="toggleCard('card2')">
@@ -333,32 +343,46 @@
       </div>
     </div>
 
-    <div class="prd-card" id="card3">
-      <div class="prd-head" onclick="toggleCard('card3')">
-        <div class="prd-title-row">
-          <span class="prd-id">PRD-03</span>
-          <span class="prd-title">AI Fitness Coach</span>
-          <span class="tag tag-concept">Concept</span>
-        </div>
-        <span class="chevron">+</span>
-      </div>
-      <div class="prd-body">
-        <div class="prd-body-inner">
-          <div class="prd-sub">The idea</div>
-          <p>A coaching app that adapts in real time to form, fatigue signals, and consistency patterns — the way a human coach notices when you're phoning it in vs. genuinely struggling.</p>
-          <div class="prd-sub">Target users</div>
-          <p>People who've tried fitness apps before and quit within 3 weeks — not from lack of motivation, but because the app couldn't tell "I'm tired today" from "I'm not trying."</p>
-          <div class="prd-sub">Core features</div>
-          <ul>
-            <li>Form-correction via pose detection, with feedback that encourages rather than scolds.</li>
-            <li>Adaptive difficulty that lowers the bar after a missed-session streak instead of guilt-tripping — re-engagement over rigidity.</li>
-            <li>A weekly "honest recap" — a plain-language read on whether you're actually progressing or plateauing.</li>
-          </ul>
-          <div class="prd-sub">Why it would succeed</div>
-          <p>Most fitness apps fail at retention, not acquisition. The wedge isn't more features — it's emotional intelligence: an app that adjusts to a bad week instead of punishing it solves the actual reason people quit. That's a product bet, not a tech bet.</p>
-        </div>
-      </div>
+   <div class="prd-card" id="card3">
+  <div class="prd-head" onclick="toggleCard('card3')">
+    <div class="prd-title-row">
+      <span class="prd-id">PRD-03</span>
+      <span class="prd-title">CopDrop – Product Breakdown</span>
+      <span class="tag tag-concept">Critique</span>
     </div>
+    <span class="chevron">+</span>
+  </div>
+  <div class="prd-body">
+    <div class="prd-body-inner">
+      <div class="prd-sub">What works</div>
+      <p>Clear discovery concept in seconds. Strong search. Feels like a homegrown brand-first platform.</p>
+
+      <div class="prd-sub">Key gaps</div>
+      <ul>
+        <li>Problem not explicit : value feels implied, not stated.</li>
+        <li>Homepage stays static after login → no personalization.</li>
+        <li>Messaging is product-led, not user-led.</li>
+      </ul>
+
+      <div class="prd-sub">Opportunities</div>
+      <ul>
+        <li>Personalized feed: “You liked X → Try Y”</li>
+        <li>Intent-based search (style + budget)</li>
+        <li>Trend signals (“Trending this week”)</li>
+      </ul>
+
+      <div class="prd-sub">UX improvements</div>
+      <ul>
+        <li>Guest session before signup</li>
+        <li>Save user behavior pre-login</li>
+        <li>Reduce whitespace, improve content density</li>
+      </ul>
+
+      <div class="prd-sub">Takeaway</div>
+      <p>Strong base. Next step: shift from static browsing → AI-driven personalized discovery.</p>
+    </div>
+  </div>
+</div>
 
   </div>
 </section>
@@ -374,8 +398,8 @@
         <div class="exp-org">Genesis Training</div>
       </div>
       <ul>
-        <li>Sat at the intersection of trainers, colleges, and finance — three groups with different priorities and zero shared context.</li>
-        <li>Owned freelance trainer sourcing and onboarding end-to-end, making fast judgment calls on fit with incomplete information — a very PM problem.</li>
+        <li>Sat at the intersection of trainers, colleges, and finance; three groups with different priorities and zero shared context.</li>
+        <li>Owned freelance trainer sourcing and onboarding end-to-end, making fast judgment calls on fit with incomplete information.</li>
         <li>Translated commercial terms between finance and college clients into something both sides could actually agree on.</li>
         <li>Learned that most "operational" problems are communication problems wearing a different costume.</li>
       </ul>
@@ -388,7 +412,7 @@
       </div>
       <ul>
         <li>Worked on a YOLOv8-based detection pipeline inside a larger digital twin system.</li>
-        <li>Scoped a technical problem against a non-negotiable real-world accuracy constraint — there was no "ship it and iterate" luxury here.</li>
+        <li>Scoped a technical problem against a non-negotiable real-world accuracy constraint but there was no "ship it and iterate" luxury here.</li>
         <li>Got firsthand exposure to how technical decisions get made when the cost of being wrong is high, not hypothetical.</li>
       </ul>
     </div>
@@ -399,7 +423,7 @@
         <div class="exp-org">IFSCR Research Centre</div>
       </div>
       <ul>
-        <li>Contributed to applied research work, reinforcing how to take a vague, open-ended problem and narrow it into something testable — the same muscle product discovery needs.</li>
+        <li>Contributed to applied research work, reinforcing how to take a vague, open-ended problem and narrow it into something testable ; the same muscle product discovery needs. Also pretty much helped my Prof with her Phd ;)</li>
       </ul>
     </div>
 
