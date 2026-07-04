@@ -267,48 +267,7 @@
 <section id="work">
   <div class="wrap">
     <span class="eyebrow">// case studies</span>
-    <h2 class="section-title">Three ways I think about products</h2>
-
-    <div class="prd-card" id="card1">
-  <div class="prd-head" onclick="toggleCard('card1')">
-    <div class="prd-title-row">
-      <span class="prd-id">PRD-01</span>
-      <span class="prd-title">Skeleton-Based Yoga Motion Generation</span>
-      <span class="tag tag-shipped">Research Project</span>
-    </div>
-    <span class="chevron">+</span>
-  </div>
-  <div class="prd-body">
-    <div class="prd-body-inner">
-
-
-  <div class="prd-sub">Problem</div>
-  <p>Most motion generation models work well for fast, generic actions but struggle with slow, stability-heavy movements like yoga often producing jittery and biomechanically inconsistent sequences.</p>
-  
-  <div class="prd-sub">Research focus</div>
-  <p>Understanding whether generative models can learn structured, temporally consistent yoga motion not just replicate poses, but generate smooth and diverse transitions.</p>
-  
-  <div class="prd-sub">Key decisions</div>
-  <ul>
-    <li>Used <strong>skeleton-based data (3D joints)</strong> instead of video to improve control and interpretability.</li>
-    <li>Adopted a <strong>CVAE + GRU architecture</strong> to balance temporal modeling with generative diversity.</li>
-    <li>Introduced <strong>motion-aware augmentation and stability anchoring</strong> to reduce jitter and improve early-frame consistency.</li>
-    <li>Benchmarked against <strong>Seq2Seq and standard VAE baselines</strong> to validate improvements.</li>
-  </ul>
-  
-  <div class="prd-sub">Trade-offs</div>
-  <ul>
-    <li><strong>Diversity vs. stability</strong> — increasing variation can introduce slight anatomical inconsistencies.</li>
-    <li><strong>Evaluation limits</strong> — metrics capture smoothness and realism, but not fully human-perceived quality.</li>
-  </ul>
-  
-  <div class="result-line">Result: +59% improvement in generative diversity over Seq2Seq with improved realism (lower Motion-FID) and stable motion generation.</div>
-
-</div>
-```
-
-  </div>
-</div>
+    <h2 class="section-title"> Ways I think about products</h2>
 
     <div class="prd-card" id="card2">
       <div class="prd-head" onclick="toggleCard('card2')">
